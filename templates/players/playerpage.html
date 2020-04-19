@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block script_content %}
+	<script>
+		$("#share-card-form").submit(function () {
+			console.log('hello')
+		});
+	</script>
+{% endblock %}
+
+
+
+{% block main_content %}
+	<h1>{{player}}</h1>
+
+	<form  action="." method="post" id="share-card-form">
+		{% csrf_token %}
+		{{ form.as_ul}}
+		<input type="submit" value="Share Card">
+	</form>
+{% endblock %}

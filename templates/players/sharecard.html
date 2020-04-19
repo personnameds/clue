@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+	<h1>Which card will {{card_list.0.player}} share</h1>
+
+	{% for card in card_list %}
+		<p>{{card}}</p>	
+	{% endfor %}
+	
+	<!--Selection of player should occur in modal
+	<h1>with {{sharewith.character}}</h1>
+	-->
+{% endblock %}
+

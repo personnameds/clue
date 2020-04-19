@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+	<h1>Select a Player</h1>
+
+	
+	{% for playersheet in playersheet_list %}
+		<p><a href="{% url 'playerpage' playersheet.pk %}">{{playersheet.player.character}} </a></p>
+	{% endfor %}
+	
+{% endblock %}
+
