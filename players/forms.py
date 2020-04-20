@@ -1,6 +1,6 @@
 from django import forms
 from players.models import PlayerSheet, Player
-
+from cards.models import Card
 
 class PlayerSheetForm(forms.ModelForm):
 	class Meta:
@@ -10,8 +10,15 @@ class PlayerSheetForm(forms.ModelForm):
 				'r1','r2','r3','r4','r5','r6','r7','r8','r9',	
 				 ]
 
-#Selection of Player should go in Modal
-# 	def __init__(self, *args, **kwargs):
-# 		player = kwargs['instance'].player
-# 		super(PlayerSheetForm, self).__init__(*args, **kwargs)
-# 		self.fields['sharewith'] = forms.ModelChoiceField(queryset=Player.objects.exclude(pk=player.pk),empty_label=None)
+class ShareCardForm(forms.Form):	
+	def __init__(self, *args, **kwargs):
+		player_pk = kwargs.pop('player_pk')
+		player=Player.objects.get(pk=player_pk)
+		super(ShareCardForm, self).__init__(*args, **kwargs)
+		self.fields['card'] = forms.ModelChoiceField(
+						queryset=Card.objects.filter(player=player),
+						label='Card',
+						empty_label=None,
+						widget =forms.RadioSelect,
+						)
+		self.fields['sharewith'] = forms.ModelChoiceField(queryset=Player.objects.exclude(pk=player_pk),label='Share with',empty_label=None)

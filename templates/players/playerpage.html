@@ -2,12 +2,28 @@
 
 {% block script_content %}
 	<script>
-		$("#share-card-form").submit(function () {
-			console.log('hello')
-		});
+
+$(document).ready(function() {
+  	worker();
+});
+
+function worker() {
+    $.ajax({
+    	url: '/ajax/share_card_query/',
+    	data: {'player':'{{player}}'},
+    	success: function (data) {
+    		console.log(data.response)
+    		if (data.response) {
+    			alert("You got a card:"+data.card_text);
+    		} 
+      	},
+      	complete: function () {
+      		setTimeout(worker, 10000);
+      	}
+	});
+}
 	</script>
 {% endblock %}
-
 
 
 {% block main_content %}

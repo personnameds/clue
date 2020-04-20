@@ -32,3 +32,11 @@ class PlayerSheet(models.Model):
 
 	def __str__(self):
 		return self.player.character
+		
+class SharedWith(models.Model):
+	shared_with=models.BooleanField(default=False)
+	player=models.ForeignKey(Player, on_delete=models.CASCADE, default='Nobody')
+	card_text=models.CharField(max_length=13, default='Blank')
+	
+	def __str__(self):
+		return self.player.character

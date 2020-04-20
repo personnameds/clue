@@ -4,7 +4,7 @@ from django.views.generic import ListView
 from startpage.forms import SetupForm
 from random import shuffle
 from cards.models import Solution, Card
-from players.models import Player, PlayerSheet
+from players.models import Player, PlayerSheet, SharedWith
 from itertools import cycle
 from django.urls import reverse_lazy
 import random
@@ -120,9 +120,15 @@ class StartPage(FormView):
 				character=PLAYER_DICT[player],
 				)
 			player.save()
-
-		DealCards()
+			
+			sharedwith=SharedWith(
+				shared_with=False,
+				player=player,
+				card_text='None',
+				)
+			sharedwith.save()
 		
+		DealCards()
 		return super().form_valid(form)
 
 class SelectPlayer(ListView):

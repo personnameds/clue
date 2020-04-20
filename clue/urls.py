@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from startpage.views import StartPage, SelectPlayer
-from players.views import PlayerPage, ShareCard
+from players.views import PlayerPage, ShareCard, AjaxShareCardQuery
 
 urlpatterns = [
 	path('', StartPage.as_view(), name='startpage'),
 	path('selectplayer/', SelectPlayer.as_view(), name='selectplayer'),
 	path('sharecard/<int:player_pk>/', ShareCard.as_view(), name='sharecard'),
 	path('player/<int:pk>/', PlayerPage.as_view(), name='playerpage'),
+	path('ajax/share_card_query/', AjaxShareCardQuery, name='ajaxsharecardquery'),
     path('admin/', admin.site.urls),
 ]
