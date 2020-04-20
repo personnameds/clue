@@ -5,7 +5,11 @@
 
 	
 	{% for playersheet in playersheet_list %}
-		<p><a href="{% url 'playerpage' playersheet.pk %}">{{playersheet.player.character}} </a></p>
+		<p>
+			<a href="{% url 'playerpage' playersheet.pk %}">{{playersheet.player.character}} </a>
+			To play go to: mrsanyal/player/{{playersheet.pk}}
+		
+		</p>
 	{% endfor %}
 	
 {% endblock %}
