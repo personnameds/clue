@@ -27,7 +27,12 @@ class PlayerPage(UpdateView):
 	form_class = PlayerSheetForm
 	template_name='players/playerpage.html'
 	context_object_name= 'player'
-
+	
+	def get_context_data(self, **kwargs):
+		context= super().get_context_data(**kwargs)
+		context['cards']=Card.objects.filter(player=self.object.player)
+		return context
+		
 	def get_success_url(self, **kwargs):
 		player_pk=self.object.player.pk
 		return reverse('sharecard', kwargs={'player_pk':player_pk})
@@ -41,6 +46,7 @@ class ShareCard(FormView):
 		context = super().get_context_data(**kwargs)
 		player=Player.objects.get(pk=self.kwargs['player_pk'])
 		context['player'] = player
+		context['playersheet'] = PlayerSheet.objects.get(player=player)
 		return context
 	
 	def get_form_kwargs(self):

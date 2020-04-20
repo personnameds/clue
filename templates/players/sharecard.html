@@ -6,7 +6,7 @@
 	<form  action="." method="post" id="share-card-form">
 		{% csrf_token %}
 		{{ form.as_p}}
-		<input type="submit" value="Show Card">
+		<button type="submit" class="btn btn-primary">Show Card</button>
 	</form>
+	<a href="{% url 'playerpage' playersheet.pk %}" class="btn btn-secondary" role="button">Don't Have A Card</a>
 {% endblock %}
-
