@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.views.generic.edit import UpdateView, FormView
-from django.views. generic import ListView
 from players.forms import PlayerSheetForm, ShareCardForm
 from cards.models import Card
 from players.models import PlayerSheet, Player, SharedWith

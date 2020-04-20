@@ -47,7 +47,15 @@ def DealCards():
 	weapon=WEAPONS[w]
 	r=random.randint(0,8)
 	room=ROOMS[r]
-	
+
+
+	solution=Solution(
+		murderer=suspect,
+		weapon=weapon,
+		room=room,
+		)
+	solution.save()
+
 	#Add Solution Cards to Card List
 	card_list.insert(s,0)
 	card_list.insert(w+6,0)
